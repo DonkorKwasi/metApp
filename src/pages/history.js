@@ -59,5 +59,11 @@ historyList = list;
 
 }
 allHistory = <ListGroup>{historyList}</ListGroup>
-return(<div>{allHistory}</div>)
+return(<div>
+    
+    <br />
+    <br />
+    <br />
+    <br />
+    {allHistory}</div>)
 }
