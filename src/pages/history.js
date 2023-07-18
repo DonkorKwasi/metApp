@@ -34,7 +34,7 @@ router.push(string);
 async function removeHistoryClicked (e,index)
 {
     e.stopPropagation(); 
-    setHistory(await removeFromHistory(searchHistory[index]));
+    setHistory(await removeFromHistory(history[index]));
     
    
 }
