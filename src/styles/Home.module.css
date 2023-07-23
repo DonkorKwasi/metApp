@@ -1,0 +1,21 @@
+.content{
+width: 700px;
+height: 600px;
+}
+
+.container{
+    width: 700px;
+    margin: auto;
+}
+.descContain{
+ width: 700px;
+ height: auto;
+ background-color: teal ;   
+ border-radius: 5px;
+}
+
+.desc{
+    text-align: center;
+    color:aliceblue;
+}
+

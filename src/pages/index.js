@@ -24,9 +24,11 @@ import {Col} from 'react-bootstrap'
 
 
   return (
-    <div>
- <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Metropolitan_Museum_of_Art_%28The_Met%29_-_Central_Park%2C_NYC.jpg" alt="MET"></img>
-<p>The Metropolitan Museum of Art in New York City,</p>
+    <div className={styles.container} >
+ <img className={styles.content} src="https://upload.wikimedia.org/wikipedia/commons/3/30/Metropolitan_Museum_of_Art_%28The_Met%29_-_Central_Park%2C_NYC.jpg" alt="MET"></img>
+ <div className={styles.descContain}>
+<p className={styles.desc}>This site is based off of information about the Metropolitan Museum of Art. The MET is the largest art museum in the americas and this website allows users to search for various information about the pieces of art that reside there. Users can then make an account and track the history of their searches and add specific pieces of art to their favourites.</p>
+</div>
 </div>
   )
 }

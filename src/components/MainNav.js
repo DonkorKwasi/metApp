@@ -11,7 +11,7 @@ import { searchHistoryAtom } from "store";
 import Link from "next/link";
 import { removeToken } from "lib/authenticate";
 import { readToken } from "lib/authenticate";
-
+import styles from "../styles/nav.module.css"
 import { addToHistory } from "lib/userData";
 
 function MainNav()
@@ -64,10 +64,11 @@ console.log(token)
 if(token)
 { 
   topPart = <div>
+       
     <Link href="/search">
                 <Nav.Link href="#link" onClick={makeFalse}color="white"  active={router.pathname === "/search"} > <h4 className="linkText">Advanced Search</h4></Nav.Link>
                 </Link>
-
+                <br/>
                 
                 <Form className="d-flex" onSubmit = {Direct}>
                 Search: <Form.Control
@@ -80,16 +81,17 @@ if(token)
                        />
            <Button type="submit">Submit</Button>
                  </Form>
+             
                 
         
                  </div>
                      
 
-usersName =  <Nav>  <NavDropdown title={token.userName} id="basic-nav-dropdown">
+usersName =  <Nav>  <NavDropdown  title={<p className={styles.text}>{token.userName}</p>} id="basic-nav-dropdown">
              <p>{token.userName}</p>
 <Link href="/Favourites">
  <NavDropdown.Item  href="#Favourites" onClick={makeFalse} color="white" active={router.pathname === "/Favourites"}>
- <h4>Favourites</h4>
+ <h4 >Favourites</h4>
  </NavDropdown.Item>
  </Link>
  <Link href="/history">
@@ -126,8 +128,8 @@ notLogged = <Nav>
     return (
         <div>
         <Navbar bg="dark" expand="lg" className="fixed-top"  expanded={isExpanded}>
-          <Container>
-            <Navbar.Brand >Kwasi Donkor</Navbar.Brand>
+          <Container className={styles.bar} >
+            <Navbar.Brand className={styles.text}>Kwasi Donkor</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
