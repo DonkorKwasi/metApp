@@ -25,7 +25,7 @@ var card  = null;
             none = <Error statusCode={404}/>
         }
         else{
-console.log(data)
+
             if(data != undefined)
             {
             var img;
@@ -37,11 +37,11 @@ console.log(data)
 
             if(data?.primaryImageSmall == "")
             {
-                console.log('confusion');
+              
                 img = "https://via.placeholder.com/375x375.png?text=[+Not+Available+]"
             }
             else
-            {  console.log('confusion@');
+            { 
                 img = data?.primaryImageSmall;
             }
 

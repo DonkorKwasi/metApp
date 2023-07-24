@@ -15,7 +15,7 @@ import useSWR from 'swr'
 function Artwork()
 {
     const PER_PAGE  = 12;
-
+ const [totalAmount,setAmount] = useState(0);
     const router = useRouter();
     let finalQuery = router.asPath.split('?')[1];
 
@@ -29,7 +29,20 @@ SetPage(page -1);
 
     function nextPage()
     {
+      console.log(totalAmount)
+      let pages = Math.floor(totalAmount/PER_PAGE)
+      let remainder = totalAmount % PER_PAGE
+      console.log(pages);
+      console.log(remainder);
+      if(remainder > 0)
+      {
+pages += 1;
+      }
+      console.log(pages);
+      if( (page + 1) <= pages )
+      {
    SetPage(page + 1);
+      }
     }
     const [artworkList,setList] = useState();
     const [page,SetPage] = useState(1);
@@ -41,6 +54,9 @@ SetPage(page -1);
     {
     if(data){
         
+
+      console.log(data)
+      setAmount(data.total)
       let filteredResults = validObjectIdList.objectIDs.filter(x => data.objectIDs?.includes(x));
 
 
@@ -70,7 +86,7 @@ SetPage(page -1);
    {
       if(artworkList?.length > 0)
       {
-        console.log(artworkList);
+        
      const card = artworkList[page -1].map((art) =>
      
      <Col lg={3} key={art}><ArtworkCard objectID={art} /></Col>

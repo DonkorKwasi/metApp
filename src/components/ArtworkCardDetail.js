@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { removeFromFavourites } from 'lib/userData';
 import { addToFavourites } from 'lib/userData';
 import { useEffect } from 'react';
+import styles from '../styles/card.module.css'
 const fetcher = (url) => fetch(url).then((res) => res.json()); 
 
 function ArtworkCardDetail(props)
@@ -111,7 +112,7 @@ var card  = null;
             }
             else
             {
-                img =  <Card.Img variant="top" src= {data?.primaryImage} />
+                img =  <Card.Img className={styles.image} variant="top" src= {data?.primaryImage} />
             }
 
             
@@ -164,7 +165,7 @@ Date = data?.objectDate
 dest = "/Artwork/";
 dest = dest + props?.objectID;
 
-card =<Card>
+card =<Card >
 {img}
  <Card.Title>{title}</Card.Title>
  <Link href={dest}>
