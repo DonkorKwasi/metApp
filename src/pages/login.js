@@ -8,6 +8,7 @@ import { searchHistoryAtom } from "store";
 import { useAtom } from "jotai";
 import { getFavourites } from "lib/userData";
 import { getHistory } from "lib/userData";
+import { readToken } from "lib/authenticate";
 export default function Login(props){
     const [warning, setWarning] = useState('');
     const router = useRouter();
@@ -15,6 +16,7 @@ export default function Login(props){
   const [password, setPassword] = useState("");
 const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
 const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
+let token = readToken();
   async function  updateAtoms(){
       setFavouritesList(await getFavourites()); 
       setSearchHistory(await getHistory()); 
@@ -40,11 +42,11 @@ const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
       <br />
       <Form onSubmit={handleSubmit}>
         <Form.Group>
-          <Form.Label>User:</Form.Label><Form.Control type="text" value={user} id="userName" name="userName" onChange={e => setUser(e.target.value)} />
+          <Form.Label>User:</Form.Label><Form.Control type="text"  id="userName" name="userName" onChange={e => setUser(e.target.value)} />
         </Form.Group>
         <br />
         <Form.Group>
-          <Form.Label>Password:</Form.Label><Form.Control type="password" value={password} id="password" name="password" onChange={e => setPassword(e.target.value)} />
+          <Form.Label>Password:</Form.Label><Form.Control type="password"  id="password" name="password" onChange={e => setPassword(e.target.value)} />
         </Form.Group>
         <br />
         <Button variant="primary" className="pull-right" type="submit">Login</Button>

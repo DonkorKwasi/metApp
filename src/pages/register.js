@@ -18,7 +18,7 @@ const [password2, setPassword2] = useState("");
     try {
       await registerUser(user, password, password2);
   
-      router.push('/Login');
+      router.push('/login');
     } catch (err) {
         console.log(`${password}  + ${password2}`)
       setWarning(err.message);
@@ -27,7 +27,7 @@ const [password2, setPassword2] = useState("");
   return (
     <>
       <Card bg="light">
-        <Card.Body><h2>Registeer</h2>Enter your desired account info below:</Card.Body>
+        <Card.Body><h2>Register</h2>Enter your desired account info below:</Card.Body>
       </Card>
       <br />
       <Form onSubmit={handleSubmit}>
