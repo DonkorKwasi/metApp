@@ -18,9 +18,14 @@ const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
 const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
 let token = readToken();
   async function  updateAtoms(){
-      setFavouritesList(await getFavourites()); 
-      setSearchHistory(await getHistory()); 
-  }
+  var fav =   await getFavourites()
+   var hist = await getHistory()
+   console.log(fav)
+   console.log(hist)
+      setFavouritesList(fav); 
+      setSearchHistory(hist); 
+      
+    }
   
   
  async function handleSubmit(e) {
