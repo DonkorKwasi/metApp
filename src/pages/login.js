@@ -1,5 +1,5 @@
 import { Card, Form } from "react-bootstrap";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { authenticateUser } from "lib/authenticate";
 import { useRouter } from 'next/router';
 import {   Alert, Button } from 'react-bootstrap';
@@ -9,6 +9,12 @@ import { useAtom } from "jotai";
 import { getFavourites } from "lib/userData";
 import { getHistory } from "lib/userData";
 import { readToken } from "lib/authenticate";
+import { PrismaClient } from '@prisma/client'
+import { userNameAtom } from "store";
+
+
+
+
 export default function Login(props){
     const [warning, setWarning] = useState('');
     const router = useRouter();
@@ -16,29 +22,33 @@ export default function Login(props){
   const [password, setPassword] = useState("");
 const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
 const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
+const [userStore, setUserStore] = useAtom(userNameAtom);
 let token = readToken();
-  async function  updateAtoms(){
-  var fav =   await getFavourites()
-   var hist = await getHistory()
-   console.log(fav)
-   console.log(hist)
-      setFavouritesList(fav); 
-      setSearchHistory(hist); 
-      
-    }
-  
-  
+
+
  async function handleSubmit(e) {
     e.preventDefault();
     try {
       await authenticateUser(user, password);
-     await updateAtoms();
-      router.push('/Favourites');
+      var favs =  await getFavourites()
+      var hist =  await getHistory()
+      console.log(favs)
+      console.log(hist)
+   setFavouritesList(favs)
+   setSearchHistory(hist)
+
+      router.push('/');
     } catch (err) {
       console.log(err);
-      setWarning(err.message);
+   setWarning("Incorrect login information");
     }
   }
+
+
+  useEffect(()=>{
+setUserStore(user)
+console.log(userStore);
+  },[user])
   return (
     <>
       <Card bg="light">

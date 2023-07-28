@@ -4,10 +4,13 @@ import { Col } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import ArtworkCard from "@/components/ArtworkCard";
 import { Card } from "react-bootstrap";
-
+import { GetServerSideProps } from "next";
+import { PrismaClient } from '@prisma/client'
+import { userNameAtom } from "store";
 function Favourites ()
 {
     const [faves,setFaves] = useAtom(favouritesAtom);
+  
     if(!faves) return null;
     var allCard = null;
     var entireArt =  <Card> <h1>Nothing Here Try adding some new artwork to the list.</h1> </Card>
@@ -37,5 +40,7 @@ allCard =  null ;
           <br/>
           {entireArt}</div>);
 }
+
+
 
 export default Favourites;

@@ -15,7 +15,7 @@ export default function RouteGuard(props) {
     const [authorized, setAuthorized] = useState(false);
     const PUBLIC_PATHS = ['/login', '/', '/_error', '/register'];
     useEffect(() => {
-        updateAtoms();
+        
         // on initial load - run auth check
         authCheck(router.pathname);
     
@@ -27,10 +27,7 @@ export default function RouteGuard(props) {
           router.events.off('routeChangeComplete', authCheck);
         };
       }, []);
-    async function  updateAtoms(){
-        setFavouritesList(await getFavourites()); 
-        setSearchHistory(await getHistory()); 
-    }
+    
     function authCheck(url) {
         // redirect to login page if accessing a private page and not logged in
         const path = url.split('?')[0];

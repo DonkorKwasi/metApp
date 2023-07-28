@@ -108,7 +108,7 @@ var card  = null;
 
             if(data?.primaryImage == "")
             {
-                img = null
+                img =  <Card.Img className={styles.image} variant="top" src="https://via.placeholder.com/375x375.png?text=[+Not+Available+]"/>
             }
             else
             {
