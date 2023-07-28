@@ -44,7 +44,7 @@ pages += 1;
    SetPage(page + 1);
       }
     }
-    const [artworkList,setList] = useState();
+    const [artworkList,setList] = useState([]);
     const [page,SetPage] = useState(1);
     var dest ='https://collectionapi.metmuseum.org/public/collection/v1/search?'
     dest = dest + finalQuery;
