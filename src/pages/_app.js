@@ -9,6 +9,7 @@ export default function App({ Component, pageProps }) {
 
 return(
   <div>
+    
     <RouteGuard>
 <Layout>
 <SWRConfig value={{fetcher:
