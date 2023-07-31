@@ -23,12 +23,14 @@ export default function Login(props){
 const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
 const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
 const [userStore, setUserStore] = useAtom(userNameAtom);
+const [loading, setLoading] = useState(<></>)
 let token = readToken();
 
 
  async function handleSubmit(e) {
     e.preventDefault();
     try {
+setLoading(<h1>loading...</h1>)
       await authenticateUser(user, password);
       var favs =  await getFavourites()
       var hist =  await getHistory()
@@ -36,9 +38,10 @@ let token = readToken();
       console.log(hist)
    setFavouritesList(favs)
    setSearchHistory(hist)
-
+setLoading(<></>)
       router.push('/');
     } catch (err) {
+      setLoading(<></>)
       console.log(err);
    setWarning("Incorrect login information");
     }
@@ -67,6 +70,7 @@ console.log(userStore);
         <Button variant="primary" className="pull-right" type="submit">Login</Button>
       </Form>
       { warning && ( <><br /><Alert variant="danger">{warning}</Alert></> )}
+      {loading}
     </>
   );
   }

@@ -80,7 +80,7 @@ var card  = null;
             else
             {
            name = data?.artistDisplayName
-           wiki =  	<a href={data?.artistWikidata_URL} target="_blank" rel="noreferrer" >wiki</a>
+           wiki =  	<a href={data?.artistWikidata_URL} target="_blank" rel="noreferrer" >Wiki Link</a>
 
             }
 
@@ -168,12 +168,12 @@ dest = dest + props?.objectID;
 card =<Card >
 {img}
  <Card.Title>{title}</Card.Title>
- <Link href={dest}>
- <Card.Text> {Date}/{classi}/{med}</Card.Text>
- </Link>
+
+ <Card.Text > Date Of Creation: {Date} &nbsp;|&nbsp; classification: {classi} &nbsp; | &nbsp;Medium Of Art: {med} &nbsp; &nbsp;</Card.Text>
+
  <br /> 
  <br /> 
-<p>{name}  Wiki: {wiki} page &nbsp; &nbsp;  &nbsp; &nbsp; Credit: {credit} &nbsp; &nbsp; dimensions: {dimension}</p>
+<p>{name}Creators Wiki Page: {wiki}  &nbsp;  | &nbsp; Credit: {credit} &nbsp; |  &nbsp; Artworks dimensions: {dimension}</p>
 {button}
 </Card>
         }

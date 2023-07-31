@@ -13,7 +13,7 @@ import { removeToken } from "lib/authenticate";
 import { readToken } from "lib/authenticate";
 import styles from "../styles/nav.module.css"
 import { addToHistory } from "lib/userData";
-
+import { getHistory } from "lib/userData";
 function MainNav()
 {
   const[history,setHistory] = useAtom(searchHistoryAtom)
@@ -42,7 +42,9 @@ setExpanded(false);
     var historyString = string2 + searchField;
     var searchString = string1+ string2;
     searchString += searchField;
-    setHistory(await addToHistory(`title=true&q=${historyString}`)) 
+    console.log(historyString)
+    await addToHistory(historyString)
+    setHistory(await getHistory()) 
 
     router.push(searchString);
 }
@@ -129,7 +131,7 @@ notLogged = <Nav>
         <div>
         <Navbar bg="dark" expand="lg" className="fixed-top"  expanded={isExpanded}>
           <Container className={styles.bar} >
-            <Navbar.Brand className={styles.text}>Kwasi Donkor</Navbar.Brand>
+            <Navbar.Brand className={styles.text}>Author: Kwasi Donkor</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">

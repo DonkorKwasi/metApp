@@ -2,15 +2,22 @@ import useSWR from 'swr'
 import Error from 'next/error';
 import { Card } from 'react-bootstrap';
 import Link from 'next/link';
-
-
+import { useRouter } from 'next/router';
+import { motion } from "framer-motion"
 function ArtworkCard(props)
 {
 
- 
- var dest = "https://collectionapi.metmuseum.org/public/collection/v1/objects/" 
+ const router = useRouter();
+let dest = "https://collectionapi.metmuseum.org/public/collection/v1/objects/" 
  dest = dest + props.objectID;
  
+ function clicked()
+ {
+console.log('was clicked')
+    let details = "/Artwork/";
+details = details + props.objectID;
+router.push(details)
+ }
 const {data,error} = useSWR(dest);
 
 
@@ -84,13 +91,15 @@ Date = data?.objectDate
 dest = "/Artwork/";
 dest = dest + props.objectID;
 
-card =<Card>
+card =
+
+<motion.div whileHover={{scale: 1.05}}><Card onClick={clicked} >
  <Card.Img variant="top" src= {img} />
  <Card.Title>{title}</Card.Title>
- <Link href={dest}>
- <Card.Text> Date: {Date} &nbsp; &nbsp;/classification: {classi} &nbsp; &nbsp;/Medium: {med} &nbsp; &nbsp;</Card.Text>
- </Link>
-</Card>
+
+ <Card.Text > Date Of Creation: {Date} &nbsp;|&nbsp; classification: {classi} &nbsp; | &nbsp;Medium Of Art: {med} &nbsp; &nbsp;</Card.Text>
+ 
+</Card></motion.div>
         }
     }
         

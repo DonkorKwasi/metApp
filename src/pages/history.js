@@ -8,21 +8,29 @@ import {Button} from "react-bootstrap";
 import styles from '../styles/History.module.css';
 import { removeFromHistory } from "lib/userData";
 import { favouritesAtom } from "store";
+import { getHistory } from "lib/userData";
+import { useEffect } from "react";
 
 export default function History()
 {
     const [faves,setFaves] = useAtom(favouritesAtom);
     const [history,setHistory] = useAtom(searchHistoryAtom);
     const router = useRouter()
-    if(!faves) {return null};
+  
 
 let parsedHistory = [];
 
+
+console.log( Object.keys(history))
+if( Object.keys(history).length !== 0 )
+{
+    console.log('how are u reaching this point fuck off')
 history.forEach(h => {
     let params = new URLSearchParams(h);
     let entries = params.entries();
     parsedHistory.push(Object.fromEntries(entries));
 });
+}
 
 function historyClicked(e,index)
 {
@@ -58,6 +66,11 @@ const list = parsedHistory.map((hist,index)=>
 historyList = list;
 
 }
+useEffect(()=>
+{
+setHistory(getHistory());
+},[])
+
 allHistory = <ListGroup>{historyList}</ListGroup>
 return(<div>
     

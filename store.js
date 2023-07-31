@@ -3,7 +3,7 @@ import { atomWithStorage } from 'jotai/utils'
 
 export const favouritesAtom = atomWithStorage("fave",null);
 
-export const  searchHistoryAtom =  atomWithStorage("history",null);
+export const  searchHistoryAtom =  atomWithStorage("history",[]);
 
 
 export const userNameAtom = atomWithStorage("usersName",""); 
